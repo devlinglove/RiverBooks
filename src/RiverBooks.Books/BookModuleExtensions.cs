@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RiverBooks.Books.Controllers;
+using Serilog;
 
 namespace RiverBooks.Books;
 
-public static class BookServiceExtension
+public static class BookModuleExtensions
 {
-	public static IServiceCollection AddBooksModule(this IServiceCollection services, IConfiguration config)
+	public static IServiceCollection AddBooksModule(this IServiceCollection services, IConfiguration config, ILogger logger)
 	{
     string? connectionString = config.GetConnectionString("BooksConnectionString");
     services.AddDbContext<BookDbContext>(config => config.UseSqlServer(connectionString));
@@ -17,6 +16,7 @@ public static class BookServiceExtension
     services.AddScoped<IBookRespository, EfBookRepository>();
     //services.AddControllers().AddApplicationPart(typeof(BooksController).Assembly);
 
+    logger.Information("{Module} module services registered", "Books");
     return services;
 
 		
