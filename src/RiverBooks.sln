@@ -3,17 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Web", "RiverBooks.Web\RiverBooks.Web.csproj", "{06A96097-361C-4514-A6FA-79CCE8D8CC2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.Web", "RiverBooks.Web\RiverBooks.Web.csproj", "{06A96097-361C-4514-A6FA-79CCE8D8CC2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books", "RiverBooks.Books\RiverBooks.Books.csproj", "{F1D30F8C-E182-479B-8D66-06323699BC85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.Books", "RiverBooks.Books\RiverBooks.Books.csproj", "{F1D30F8C-E182-479B-8D66-06323699BC85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{985C3513-234A-4E45-8CC2-99A74F7664B2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.Props = Directory.Build.Props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{06A96097-361C-4514-A6FA-79CCE8D8CC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -24,5 +27,11 @@ Global
 		{F1D30F8C-E182-479B-8D66-06323699BC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D30F8C-E182-479B-8D66-06323699BC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D30F8C-E182-479B-8D66-06323699BC85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CCB1F58-8FB9-4A74-A6A0-E6D0E07B5B39}
 	EndGlobalSection
 EndGlobal

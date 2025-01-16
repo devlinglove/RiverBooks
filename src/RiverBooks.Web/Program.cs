@@ -1,4 +1,4 @@
-using RiverBooks.Books;
+﻿using RiverBooks.Books;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddUserModule();
+builder.Services.AddBooksModule(builder.Configuration);
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -22,6 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 
 
 app.MapControllers();

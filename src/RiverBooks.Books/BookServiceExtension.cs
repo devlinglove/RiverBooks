@@ -1,42 +1,23 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RiverBooks.Books.Controllers;
 
 namespace RiverBooks.Books;
 
-//public static class BookEndPoints
-//{
-//	public static void MapBookEndpoints(this WebApplication app)
-//	{
-//		app.MapGet("/books", (IBookService bookService) =>
-//		{
-//			return bookService.ListBooks();
-//		});
-//	}
-//}
-
-
-
-
-//public class BookDto
-//{
-//	public BookDto(Guid id, string author, string title)
-//	{
-//		Id = id;
-//		Author = author;
-//		Title = title;
-//	}
-
-//	public Guid Id { get; set; }
-//	public string Author { get; set; } = string.Empty;
-//	public string Title { get; set; } = string.Empty;
-//}
-
-
 public static class BookServiceExtension
 {
-	public static IServiceCollection AddUserModule(this IServiceCollection services)
+	public static IServiceCollection AddBooksModule(this IServiceCollection services, IConfiguration config)
 	{
-		return services.AddScoped<IBookService, BookService>();
+    string? connectionString = config.GetConnectionString("BooksConnectionString");
+    services.AddDbContext<BookDbContext>(config => config.UseSqlServer(connectionString));
+
+    services.AddScoped<IBookService, BookService>();
+    services.AddScoped<IBookRespository, EfBookRepository>();
+    //services.AddControllers().AddApplicationPart(typeof(BooksController).Assembly);
+
+    return services;
 
 		
 	}

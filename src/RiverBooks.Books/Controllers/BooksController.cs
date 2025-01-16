@@ -1,44 +1,25 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using RiverBooks.Books;
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace RiverBooks.Books.Controllers;
 
 
-namespace RiverBooks.Books.Controllers
+[ApiController]
+[Route("api/[controller]")]
+
+public class BooksController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BooksController : ControllerBase
-    {
-        private readonly IBookService _bookService;
-        public BooksController(
-            IBookService bookService
-           )
-        {
-            _bookService = bookService;
-        }
+  private readonly IBookService _bookService;
+  public BooksController(IBookService bookService)
+  {
+    _bookService = bookService;
+  }
 
-        [HttpGet]
-        public IActionResult GetBooks()
-        {
-            var books = _bookService.ListBooks();
-            return Ok(books);
-        }
-
-
-    }
+  [HttpGet]
+  public async Task<IActionResult> GetBooksAsync()
+  {
+    var books = await _bookService.ListBooksAsync();
+    return Ok(books);
+  }
 }
 
 
-//namespace RiverBooks.Books.Controllers
-//{
-//    public static class BookController
-//    {
-//        public static void MapBookEndpoints(this WebApplication app)
-//        {
-//            app.MapGet("/books", (IBookService bookService) =>
-//            {
-//                return bookService.ListBooks();
-//            });
-//        }
-//    }
-//}
