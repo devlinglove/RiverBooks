@@ -1,4 +1,5 @@
 ﻿using RiverBooks.Books;
+using RiverBooks.Users;
 using Serilog;
 
 
@@ -20,7 +21,8 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddBooksModule(builder.Configuration, logger);
+builder.Services.AddBooksModuleServices(builder.Configuration, logger);
+builder.Services.AddUsersModuleServices(builder.Configuration, logger);
 builder.Services.AddControllers();
 
 var app = builder.Build();
