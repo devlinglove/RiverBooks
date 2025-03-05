@@ -16,6 +16,7 @@ public class UserDbContext : IdentityDbContext<ApplicationUser>
   {
     builder.HasDefaultSchema("Users");
     builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    
     base.OnModelCreating(builder);
   }
 

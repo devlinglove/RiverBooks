@@ -58,6 +58,8 @@ public class AccountController : ControllerBase
 		var user = await _userManager.FindByNameAsync(model.Email);
 		if (user == null || user.Email == null) return Unauthorized("Invalid username or password");
 
+        
+
 		var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
 		if (result.Succeeded)
