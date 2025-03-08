@@ -1,11 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using RiverBooks.Users.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RiverBooks.Users.Domain;
+
 
 namespace RiverBooks.Users.Integration
 {

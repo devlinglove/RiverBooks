@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
+using RiverBooks.SharedKernel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RiverBooks.Users.Domain;
@@ -46,8 +46,8 @@ public class ApplicationUser : IdentityUser, IHaveDomainEvents
 		var newAddress = new UserStreetAddress(Id, address);
 		_addresses.Add(newAddress);
 
-		var domainEvent = new AddressAddedEvent(newAddress);
-		RegisterDomainEvent(domainEvent);
+		var addressEvent = new AddressAddedEvent(newAddress);
+		RegisterDomainEvent(addressEvent);
 
 		
 		return newAddress;

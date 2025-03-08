@@ -2,14 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RiverBooks.Users.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using RiverBooks.Users.UseCases.User.AddAddress;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace RiverBooks.Users.Controllers
 {
 	public class AddressController:BaseApiController

@@ -7,6 +7,8 @@ using RiverBooks.Users;
 using Serilog;
 using System.Reflection;
 using System.Text;
+using RiverBooks.SharedKernel;
+using RiverBooks.Users.UseCases.Cart.AddItem;
 
 
 var logger = Log.Logger = new LoggerConfiguration()
@@ -55,6 +57,9 @@ builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAs
 builder.Services.AddOrdersModuleServices(builder.Configuration, logger, mediatRAssemblies);
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
+
+builder.Services.AddMediatRFluentValidationBehavior();
+builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
 
 builder.Services.AddAuthentication(opt =>
 {

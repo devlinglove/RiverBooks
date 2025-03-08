@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using RiverBooks.SharedKernel;
 using RiverBooks.Users.Domain;
-using RiverBooks.Users.Repositories;
+using RiverBooks.Users.Infrastructure.Data;
+using RiverBooks.Users.Interfaces;
 using Serilog;
 using System.Reflection;
-using System.Text;
-using static RiverBooks.Users.UserDbContext;
 
 namespace RiverBooks.Users;
 
@@ -25,6 +25,7 @@ public static class UsersModuleExtensions
     services.AddDbContext<UserDbContext>(options => options.UseSqlServer(config.GetConnectionString("UsersConnectionString")));
 	services.AddTransient<ITokenService, TokenService>();
 	services.AddTransient<IApplicationUserRepository, EfApplicationUserRepository>();
+	services.AddTransient<IAddressRepository, EfUserStreetAddressRepository>();
 	services.AddIdentityCore<ApplicationUser>(options =>
 	{
 		// password configuration

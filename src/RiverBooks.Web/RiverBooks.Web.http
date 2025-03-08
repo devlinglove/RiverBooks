@@ -1,6 +1,11 @@
 @RiverBooks.Web_HostAddress = http://localhost:5070
 
-GET {{RiverBooks.Web_HostAddress}}/weatherforecast/
+POST {{RiverBooks.Web_HostAddress}}/api/Account/login
 Accept: application/json
+Content-Type: application/json
+{
+  "email": "enggomarpu@dropjar.com",
+  "password": "Zxcvb123@"
+}
 
 ###

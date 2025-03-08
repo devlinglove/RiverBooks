@@ -4,6 +4,7 @@ using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RiverBooks.Orders.UseCases.Orders.ListOrders;
 using System.Security.Claims;
 
 namespace RiverBooks.Orders.Controllers
@@ -18,6 +19,9 @@ namespace RiverBooks.Orders.Controllers
 		{
 			_sender = sender;
 		}
+
+		//Order is created from checkout command in users controller.
+
 		[Authorize]
 		[HttpGet]
 		public async Task<ActionResult<List<OrderSummary>>> ListOrders() 
@@ -31,5 +35,7 @@ namespace RiverBooks.Orders.Controllers
 			}
 			return Ok(result.Value);
 		}
+
+
 	}
 }

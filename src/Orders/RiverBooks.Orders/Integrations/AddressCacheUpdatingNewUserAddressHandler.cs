@@ -1,6 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using RiverBooks.Orders.Interfaces;
 using RiverBooks.Users.Contracts;
+using RiverBooks.Orders.Infrastructure;
+using RiverBooks.Orders.Domain;
+
 
 
 namespace RiverBooks.Orders.Integrations

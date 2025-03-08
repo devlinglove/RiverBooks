@@ -2,9 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RiverBooks.Users.Commands;
 using RiverBooks.Users.DTOs;
-using RiverBooks.Users.Queries;
+using RiverBooks.Users.UseCases.Cart.AddItem;
+using RiverBooks.Users.UseCases.Cart.Checkout;
+using RiverBooks.Users.UseCases.Cart.ListItems;
 using System.Security.Claims;
 
 
@@ -54,6 +55,21 @@ namespace RiverBooks.Users.Controllers
 
 			return Ok(result.Value);
 
+		}
+		[Authorize]
+		[HttpPost("checkout")]
+		public async Task<ActionResult<Result<Guid>>> Checkout(CheckoutRequest request)
+		{
+			var emailAddress = User.FindFirstValue(ClaimTypes.Email);
+			var checkoutCommand = new CheckoutCartCommand(emailAddress, request.shippingAddressId, request.billingAddressId);
+
+			var result = await _sender.Send(checkoutCommand);
+			if (result.Status == ResultStatus.Unauthorized)
+			{
+				return Unauthorized();
+			}
+
+			return Ok(result.Value);
 		}
 
 	}

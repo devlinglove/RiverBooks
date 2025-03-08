@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RiverBooks.Orders.Data;
+using RiverBooks.Orders.Infrastructure;
+using RiverBooks.Orders.Infrastructure.Data;
+using RiverBooks.Orders.Interfaces;
 using Serilog;
 using StackExchange.Redis;
 using System.Reflection;
@@ -21,7 +23,8 @@ public static class OrdersModuleServiceExtensions
 		services.AddTransient<IOrderRepository, EfOrderRepository>();
 		//services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
 		//services.AddHttpClient();
-		services.AddScoped<IOrderAddressCache, RedisOrderAddressCache>();
+		services.AddScoped<RedisOrderAddressCache>();
+		services.AddScoped<IOrderAddressCache, ReadThroughOrderAddressCache>();
 
 
 		mediateRAssemblies.Add(typeof(OrdersModuleServiceExtensions).Assembly);
