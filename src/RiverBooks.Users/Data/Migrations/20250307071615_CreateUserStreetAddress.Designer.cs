@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RiverBooks.Users;
 
@@ -12,9 +13,11 @@ using RiverBooks.Users;
 namespace RiverBooks.Users.Data.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250307071615_CreateUserStreetAddress")]
+    partial class CreateUserStreetAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,28 +274,22 @@ namespace RiverBooks.Users.Data.Migrations
                             b1.IsRequired();
 
                             b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("City");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Country")
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Country");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("PostalCode")
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Postal Code");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("State")
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("State");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Street1")
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Street1");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Street2")
-                                .HasColumnType("nvarchar(max)")
-                                .HasColumnName("Street2");
+                                .HasColumnType("nvarchar(max)");
                         });
 
                     b.HasKey("Id");

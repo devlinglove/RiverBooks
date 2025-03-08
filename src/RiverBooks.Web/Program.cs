@@ -99,6 +99,8 @@ builder.Services.AddAuthentication(opt =>
 
 builder.Services.AddControllers();
 builder.Services.AddAuthorization();
+builder.Services.AddLogging();
+
 
 
 var app = builder.Build();

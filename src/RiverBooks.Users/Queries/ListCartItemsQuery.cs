@@ -17,7 +17,7 @@ namespace RiverBooks.Users.Queries
 		}
 		public async Task<Result<List<CartItemDto>>> Handle(ListCartItemsQuery request, CancellationToken cancellationToken)
 		{
-			var user = await _applicationUserRepository.GetApplicationUserById(request.emailAddress);
+			var user = await _applicationUserRepository.GetUserWithCartByEmailAsync(request.emailAddress);
 
 			if (user == null)
 			{

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RiverBooks.Users.Domain;
 using RiverBooks.Users.DTOs;
 
 namespace RiverBooks.Users.Controllers;

@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Books\Books.Contracts\RiverBooks.Books.Contracts.csproj" />
+    <ProjectReference Include="..\Orders\RiverBooks.Orders.Contracts\RiverBooks.Orders.Contracts.csproj" />
+    <ProjectReference Include="..\Users\RiverBooks.Users.Contracts\RiverBooks.Users.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

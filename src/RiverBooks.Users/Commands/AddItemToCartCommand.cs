@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Ardalis.Result;
 using RiverBooks.Books.Contracts;
+using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Commands
 {
@@ -22,7 +23,7 @@ namespace RiverBooks.Users.Commands
 		}
 		public async Task<Result> Handle(AddItemToCartCommand request, CancellationToken cancellationToken)
 		{
-			var user = await _applicationUserRepo.GetApplicationUserById(request.emailAddress);
+			var user = await _applicationUserRepo.GetUserWithCartByEmailAsync(request.emailAddress);
 			if (user == null) {
 				return Result.Unauthorized();
 			}

@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using RiverBooks.Users.Domain;
 using RiverBooks.Users.Repositories;
 using Serilog;
 using System.Reflection;
 using System.Text;
+using static RiverBooks.Users.UserDbContext;
 
 namespace RiverBooks.Users;
 
@@ -41,8 +43,9 @@ public static class UsersModuleExtensions
 	.AddEntityFrameworkStores<UserDbContext>()
 	.AddSignInManager<SignInManager<ApplicationUser>>()
 	.AddUserManager<UserManager<ApplicationUser>>()
-	.AddDefaultTokenProviders(); 
+	.AddDefaultTokenProviders();
 
+	services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 	services.AddScoped<UserContextSeedService>();
 	mediateRAssemblies.Add(typeof(UsersModuleExtensions).Assembly);
 	logger.Information("{Module} module services registered", "Users");

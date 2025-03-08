@@ -1,31 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-
-namespace RiverBooks.Users;
-
-public class ApplicationUser : IdentityUser
-{
-	public string FullName { get; set; } = string.Empty;
-	private readonly List<CartItem> _cartItems = new();
-	public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
-
-	public void AddToCart(CartItem item)
-	{
-		var existingItem = _cartItems.SingleOrDefault(c => c.BookId == item.BookId);
-		if(existingItem != null)
-		{
-			item.AdjustQuantity(existingItem.Quantity + item.Quantity);
-			// TODO: if other things have been updated
-			item.UpdateDescription(item.Description);
-			item.AdjustUnitPrice(item.UnitPrice);
-			return;
-		}
-
-		_cartItems.Add(item);
-	}
-
-
-}
+﻿namespace RiverBooks.Users.Domain;
 
 public class CartItem
 {
@@ -42,7 +15,7 @@ public class CartItem
 
 	public CartItem(Guid bookId, string description, int quantity, decimal unitPrice)
 	{
-		
+
 		BookId = bookId;
 		Description = description;
 		Quantity = quantity;

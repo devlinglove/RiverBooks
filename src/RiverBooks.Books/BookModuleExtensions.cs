@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace RiverBooks.Books;
 
-public static class BookModuleExtensions
+public static class BookModuleServicesExtensions
 {
 	public static IServiceCollection AddBooksModuleServices(this IServiceCollection services, IConfiguration config, ILogger logger, List<Assembly> mediateRAssemblies)
 	{
@@ -15,7 +15,7 @@ public static class BookModuleExtensions
 
     services.AddScoped<IBookService, BookService>();
     services.AddScoped<IBookRespository, EfBookRepository>();
-	mediateRAssemblies.Add(typeof(BookModuleExtensions).Assembly);
+	mediateRAssemblies.Add(typeof(BookModuleServicesExtensions).Assembly);
 
 
 	logger.Information("{Module} module services registered", "Books");
