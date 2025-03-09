@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using RiverBooks.SharedKernel;
 using RiverBooks.Users.UseCases.Cart.AddItem;
+using RiverBooks.EmailSending;
 
 
 var logger = Log.Logger = new LoggerConfiguration()
@@ -55,6 +56,7 @@ List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
 builder.Services.AddBooksModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddUsersModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddOrdersModuleServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddEmailSendingServices(builder.Configuration, logger, mediatRAssemblies);
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
 
