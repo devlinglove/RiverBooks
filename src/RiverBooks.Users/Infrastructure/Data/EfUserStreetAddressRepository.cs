@@ -1,4 +1,5 @@
-﻿using RiverBooks.Users.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using RiverBooks.Users.Domain;
 using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.Infrastructure.Data;
@@ -14,5 +15,10 @@ internal class EfUserStreetAddressRepository : IAddressRepository
 	public async Task<UserStreetAddress> GetAddressByIdAsync(Guid id)
 	{
 		return await _userDbContext.UserStreetAddresses.FindAsync(id);
+	}
+
+	public Task SaveChangesAsync()
+	{
+		return _userDbContext.SaveChangesAsync();
 	}
 }

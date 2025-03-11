@@ -34,19 +34,43 @@ public partial class UserDbContext : IdentityDbContext<ApplicationUser>
 
   }
 
-	public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+	//public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+	//{
+	//	var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+	//	if (_dispatcher is null) return result;
+
+	//	var entitiesWithEvents = ChangeTracker.Entries<IHaveDomainEvents>()
+	//	.Select(e => e.Entity)
+	//	.Where(e => e.DomainEvents.Any()).ToArray();
+
+	//	await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
+
+	//	return result;
+	//}
+
+
+	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
 	{
 		var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-		if (_dispatcher is null) return result;
+		// ignore events if no dispatcher provided
+		if (_dispatcher == null) return result;
 
+		// dispatch events only if save was successful
 		var entitiesWithEvents = ChangeTracker.Entries<IHaveDomainEvents>()
-		.Select(e => e.Entity)
-		.Where(e => e.DomainEvents.Any()).ToArray();
+			.Select(e => e.Entity)
+			.Where(e => e.DomainEvents.Any())
+		.ToArray();
 
 		await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
 
 		return result;
 	}
+
+
+
+
+
 
 }

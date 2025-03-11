@@ -36,12 +36,12 @@ namespace RiverBooks.Users.Infrastructure.Data
 		{
 			return _userDbContext.ApplicationUsers
 			  .Include(user => user.CartItems)
-			  .SingleAsync(user => user.Email == email);
+			  .SingleOrDefaultAsync(user => user.Email == email);
 		}
 
-		public async Task SaveChangesAsync()
+		public Task SaveChangesAsync()
 		{
-			await _userDbContext.SaveChangesAsync();
+			return _userDbContext.SaveChangesAsync();
 		}
 	}
 }

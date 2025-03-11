@@ -1,5 +1,7 @@
 ﻿
 
+using Ardalis.Result;
+using MediatR;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using RiverBooks.Users.Domain;
 using RiverBooks.Users.DTOs;
 using RiverBooks.Users.Interfaces;
+using RiverBooks.Users.UseCases.User.Create;
 
 namespace RiverBooks.Users.Controllers;
 [ApiController]
@@ -17,22 +20,36 @@ public class AccountController : ControllerBase
   private readonly UserManager<ApplicationUser> _userManager;
   private readonly SignInManager<ApplicationUser> _signInManager;
   private readonly ITokenService _tokenService;
-  //private readonly ISender _sender;
+  private readonly ISender _sender;
 
   public AccountController(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager,
-    ITokenService tokenService
-    ///ISender sender
+    ITokenService tokenService,
+    ISender sender
     )
   {
     _userManager = userManager;
     _signInManager = signInManager;
     _tokenService = tokenService;
-    //_sender = sender;
+    _sender = sender;
   }
 
-  [HttpPost("register")]
+	[HttpPost]
+	public async Task<IActionResult> RegisterUser(RegisterDto model)
+    {
+        var createUserCommand = new CreateUserCommand(model.Email, model.Password);
+        var result = await _sender.Send(createUserCommand);
+        if(result.Status == ResultStatus.Unavailable)
+        {
+			return BadRequest($"An existing account is using {model.Email}, email address. Please try with another email address");
+		}
+
+        return Ok();
+
+    }
+
+	[HttpPost("register")]
   public async Task<IActionResult> AddUser (RegisterDto model)
   {
     if (await CheckEmailExistsAsync(model.Email))

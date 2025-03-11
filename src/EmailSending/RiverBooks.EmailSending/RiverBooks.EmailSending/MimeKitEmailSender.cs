@@ -8,9 +8,9 @@ namespace RiverBooks.EmailSending
 {
 	internal class MimeKitEmailSender : ISenderEmail
 	{
-		private readonly ILogger _logger;
+		private readonly ILogger<MimeKitEmailSender> _logger;
 
-		public MimeKitEmailSender(ILogger logger)
+		public MimeKitEmailSender(ILogger<MimeKitEmailSender> logger)
 		{
 			_logger = logger;
 		}
@@ -21,10 +21,10 @@ namespace RiverBooks.EmailSending
 
 			using (var client = new SmtpClient())
 			{
-				client.Connect("smtp.freesmtpservers.com", 25, false);
+				client.Connect("localhost", 25, false);
 				var message = new MimeMessage();
+				message.From.Add(new MailboxAddress(from, from));
 				message.To.Add(new MailboxAddress(to, to));
-				message.To.Add(new MailboxAddress(from, from));
 				message.Subject = subject;
 				message.Body = new TextPart("plain") { Text = body };
 				await client.SendAsync(message);

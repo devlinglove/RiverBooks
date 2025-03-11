@@ -22,10 +22,9 @@ public class ApplicationUser : IdentityUser, IHaveDomainEvents
 		var existingItem = _cartItems.SingleOrDefault(c => c.BookId == item.BookId);
 		if (existingItem != null)
 		{
-			item.AdjustQuantity(existingItem.Quantity + item.Quantity);
-			// TODO: if other things have been updated
-			item.UpdateDescription(item.Description);
-			item.AdjustUnitPrice(item.UnitPrice);
+			existingItem.UpdateQuantity(existingItem.Quantity + item.Quantity);
+			existingItem.UpdateDescription(item.Description);
+			existingItem.UpdateUnitPrice(item.UnitPrice);
 			return;
 		}
 

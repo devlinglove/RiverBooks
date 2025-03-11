@@ -1,5 +1,6 @@
 ﻿using Ardalis.Result;
 using MediatR;
+using RiverBooks.Users.Contracts;
 
 namespace RiverBooks.EmailSending
 {
