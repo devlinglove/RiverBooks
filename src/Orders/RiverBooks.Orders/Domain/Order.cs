@@ -1,8 +1,10 @@
-﻿using System.Net;
+﻿using RiverBooks.SharedKernel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Net;
 
 namespace RiverBooks.Orders.Domain
 {
-	internal class Order
+	internal class Order: IHaveDomainEvents
 	{
 		public Guid Id { get; set; }
 		public Guid UserId { get; set; }
@@ -11,8 +13,13 @@ namespace RiverBooks.Orders.Domain
 		public DateTimeOffset DateCreated { get; private set; } = DateTimeOffset.UtcNow;
 		private readonly List<OrderItem> _orderItems = new();
 		public IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
+		
+		private List<DomainEventBase> _domainEvents = new();
+		[NotMapped]
+		public IEnumerable<DomainEventBase> DomainEvents => _domainEvents.AsReadOnly();
 
 		private void AddOrderItem(OrderItem item) => _orderItems.Add(item);
+		protected void RegisterDomainEvent(DomainEventBase domainEvent) => _domainEvents.Add(domainEvent);
 
 		internal class Factory
 		{
@@ -30,11 +37,16 @@ namespace RiverBooks.Orders.Domain
 					order.AddOrderItem(item);
 				}
 
-				//var createdEvent = new OrderCreatedEvent(order);
-				//order.RegisterDomainEvent(createdEvent);
+				var createdEvent = new OrderCreatedEvent(order);
+				order.RegisterDomainEvent(createdEvent);
 
 				return order;
 			}
+		}
+
+		public void ClearDomainEvents()
+		{
+			_domainEvents.Clear();
 		}
 
 	}

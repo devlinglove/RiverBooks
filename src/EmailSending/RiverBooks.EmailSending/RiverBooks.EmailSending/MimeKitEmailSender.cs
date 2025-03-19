@@ -21,16 +21,28 @@ namespace RiverBooks.EmailSending
 
 			using (var client = new SmtpClient())
 			{
-				client.Connect("localhost", 25, false);
-				var message = new MimeMessage();
-				message.From.Add(new MailboxAddress(from, from));
-				message.To.Add(new MailboxAddress(to, to));
-				message.Subject = subject;
-				message.Body = new TextPart("plain") { Text = body };
-				await client.SendAsync(message);
+				try
+				{
+					client.Connect("localhost", 25, false);
+					var message = new MimeMessage();
+					message.From.Add(new MailboxAddress(from, from));
+					message.To.Add(new MailboxAddress(to, to));
+					message.Subject = subject;
+					message.Body = new TextPart("plain") { Text = body };
+					await client.SendAsync(message);
 
-				_logger.LogInformation("Email sent!");
-				client.Disconnect(true);
+					_logger.LogInformation("Email sent!");
+					client.Disconnect(true);
+
+					_logger.LogInformation("Email sent!");
+				}
+				catch (Exception ex)
+				{
+					_logger.LogError(ex, "An error occurred while sending the email.");
+				}
+
+
+
 			}
 
 			

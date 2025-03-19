@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Books\Books.Contracts\RiverBooks.Books.Contracts.csproj" />
+    <ProjectReference Include="..\EmailSending\RiverBooks.EmailSending.Contracts\RiverBooks.EmailSending.Contracts.csproj" />
     <ProjectReference Include="..\Orders\RiverBooks.Orders.Contracts\RiverBooks.Orders.Contracts.csproj" />
     <ProjectReference Include="..\RiverBooks.SharedKernel\RiverBooks.SharedKernel.csproj" />
     <ProjectReference Include="..\Users\RiverBooks.Users.Contracts\RiverBooks.Users.Contracts.csproj" />

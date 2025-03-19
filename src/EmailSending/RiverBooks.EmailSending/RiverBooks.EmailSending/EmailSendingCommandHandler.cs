@@ -1,11 +1,11 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using RiverBooks.Users.Contracts;
+using RiverBooks.EmailSending.Contracts;
 
 namespace RiverBooks.EmailSending
 {
-
-	internal class EmailSendingCommandHandler : IRequestHandler<EmailSendingCommand, Result<Guid>>
+	internal class EmailSendingCommandHandler 
+	//internal class EmailSendingCommandHandler : IRequestHandler<EmailSendingCommand, Result<Guid>>
 	{
 		private readonly ISenderEmail _senderEmail;
 

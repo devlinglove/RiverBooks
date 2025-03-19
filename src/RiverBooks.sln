@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailSending", "EmailSendin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending", "EmailSending\RiverBooks.EmailSending\RiverBooks.EmailSending\RiverBooks.EmailSending.csproj", "{3D994248-5411-4DB4-8AB0-4A90245EE19F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending.Contracts", "EmailSending\RiverBooks.EmailSending.Contracts\RiverBooks.EmailSending.Contracts.csproj", "{AEBE8019-7913-412B-880D-1EDBDB3047EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{3D994248-5411-4DB4-8AB0-4A90245EE19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D994248-5411-4DB4-8AB0-4A90245EE19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D994248-5411-4DB4-8AB0-4A90245EE19F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEBE8019-7913-412B-880D-1EDBDB3047EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEBE8019-7913-412B-880D-1EDBDB3047EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEBE8019-7913-412B-880D-1EDBDB3047EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBE8019-7913-412B-880D-1EDBDB3047EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{7BB93FEB-C4E6-41CD-9CEC-A3EFE356D4AE} = {052FA774-7869-4C91-9FC6-E60CE1E3A3F0}
 		{38A421DC-49ED-4065-BB4F-41F9C6FBE63D} = {B588E6FA-BE9E-450B-B858-519B1974F3B9}
 		{3D994248-5411-4DB4-8AB0-4A90245EE19F} = {38A421DC-49ED-4065-BB4F-41F9C6FBE63D}
+		{AEBE8019-7913-412B-880D-1EDBDB3047EB} = {38A421DC-49ED-4065-BB4F-41F9C6FBE63D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CCB1F58-8FB9-4A74-A6A0-E6D0E07B5B39}

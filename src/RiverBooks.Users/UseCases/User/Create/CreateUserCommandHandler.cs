@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RiverBooks.Users.Domain;
 using RiverBooks.Users.Contracts;
+using RiverBooks.EmailSending.Contracts;
 
 
 namespace RiverBooks.Users.UseCases.User.Create
